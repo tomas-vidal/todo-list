@@ -3,6 +3,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+
 }
 
 .App {
@@ -55,4 +56,29 @@ span {
     line-height: 25px;
     letter-spacing: 0em;
     color: #949494;
+}
+
+.input-check {
+    margin-top: 12px;
+    margin-left: 12px;
+    display: flex;
+}
+
+input[type="checkbox"] {
+    appearance: none;
+    background-color: #f3f3f3;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    color: black;
+    cursor: pointer;
+
+  }
+
+input[type="checkbox"]:checked {
+	background-color: #0077ff;
+}
+
+a {
+    margin-left: 5px;
 }
