@@ -1,6 +1,7 @@
 import "./App.css";
 import TodoList from "./components/TodoList.js";
 import React, { useState } from "react";
+import { v4 as uuid } from "uuid";
 
 function App() {
   const [todos, setTodos] = useState([]);
@@ -10,6 +11,7 @@ function App() {
   const [newTodo, setNewTodo] = useState({
     text: writingText,
     isDone: false,
+    id: uuid(),
   });
 
   const addTodo = (e) => {
