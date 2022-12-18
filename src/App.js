@@ -11,23 +11,47 @@ function App() {
   const [newTodo, setNewTodo] = useState({
     text: writingText,
     isDone: false,
-    id: uuid(),
   });
 
   const addTodo = (e) => {
     e.preventDefault();
-    setTodos([
-      ...todos,
-      {
-        ...newTodo,
-      },
-    ]);
-    setWritingText("");
+    if (writingText == "") {
+      return;
+    } else {
+      setTodos([
+        ...todos,
+        {
+          ...newTodo,
+          id: uuid(),
+        },
+      ]);
+      setWritingText("");
+    }
   };
 
   const handleChange = (e) => {
     setWritingText(e);
     setNewTodo({ ...newTodo, text: writingText });
+  };
+
+  const select = (todoID) => {
+    console.log(todoID);
+    setTodos(
+      todos.map((item) => {
+        if (item.id === todoID) {
+          return {
+            ...item,
+            isDone: !item.isDone,
+          };
+        } else {
+          return item;
+        }
+      })
+    );
+  };
+
+  const deleteTodo = (todoID) => {
+    setTodos(todos.filter((item) => item.id !== todoID));
   };
 
   return (
@@ -42,10 +66,15 @@ function App() {
             onChange={(e) => handleChange(e.target.value)}
           ></input>
           <button type="submit">
-            <span>+</span>
+            <span className="submit-add">+</span>
           </button>
         </form>
-        <TodoList todos={todos} setTodos={setTodos} />
+        <TodoList
+          todos={todos}
+          setTodos={setTodos}
+          select={select}
+          deleteTodo={deleteTodo}
+        />
       </div>
     </div>
   );
